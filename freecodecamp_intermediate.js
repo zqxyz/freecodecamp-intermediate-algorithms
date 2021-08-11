@@ -6,4 +6,4 @@ function sumAll(arr) {
 }
 
 
-wasumAll([1, 4])g
+wasumAll([1, 4])
