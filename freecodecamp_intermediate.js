@@ -65,71 +65,27 @@ function destroyer(arr, ...args) {
 // console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3));
 
 
-// // Getting out of hand! Restarting below ------------------------------------------
-// /**
-//  * Find key/value pair in an array of objects
-//  * @param {*} collection array of objects
-//  * @param {*} query object key and value to match
-//  * @returns Array of collection objects matching key and value from "source"
-//  */
-// function whatIsInAName(collection, query) {
-//     let arr = []
-
-//     let sourceKeys = Object.getOwnPropertyNames(query)
-//     sourceKeys.forEach((key) => {
-
-//         let sourceValue = query[key]
-
-//         collection.forEach((o) => {
-//             let props = Object.getOwnPropertyNames(o)
-//             let matchKey = props.indexOf(key)
-//             let matchValue = o[props[matchKey]]
-//             let inArr = false;
-
-//             while (matchKey > -1) {
-//                 if (matchValue == sourceValue) {
-//                     switch(inArr) {
-//                         case true:
-//                             break;
-//                         case false:
-//                             arr.push(o)
-//                             inArr = true
-//                             break;
-//                     }
-//                 } else {
-//                     switch(inArr) {
-//                         case true:
-//                             arr.pop()
-//                             break;
-//                         case false:
-//                             break;
-//                     }
-//                 }
-//                 matchKey = props.indexOf(key, matchKey+1)
-//                 matchValue = o[props[matchKey]]
-//             }
-//         })
-//     })
-//     return arr
-// }
-// console.log(whatIsInAName([{ "apple": 1, "bat": 2 }, { "bat": 2 },
-// { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, "bat": 2 }))
-
-
-// -----------------------------------------------------
 /**
- * Find key/value pair in an array of objects
+ * Get filtered array of objects in original array by key/value pairs in a query
  * @param {*} collection array of objects
  * @param {*} query object key and value to match
  * @returns Array of collection objects matching key and value from "source"
  */
 function whatIsInAName(collection, query) {
     let arr = []
-
-    
-
+    collection.forEach((o) => {
+        let mismatch = false
+        Object.getOwnPropertyNames(query).forEach((key) => {
+            let index = arr.indexOf(o)
+            if (o[key] == query[key] && !mismatch) {
+                if (index === -1) arr.push(o)
+            } else {
+                mismatch = true
+                if (index >= 0) arr.pop()
+            }
+        })
+    })
     return arr
 }
-
-console.log(whatIsInAName([  { "apple": 1, "bat": 2 },  { "bat": 2 },  { "apple": 1, "bat": 2, "cookie": 2 }  ],
+console.log(whatIsInAName([{ "apple": 1, "bat": 2 }, { "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }],
     { "apple": 1, "bat": 2 }))
