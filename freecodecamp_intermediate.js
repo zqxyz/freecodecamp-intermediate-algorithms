@@ -134,5 +134,30 @@ function translatePigLatin(str) {
     str = str.replace(before, after)
     return str;
 }
+// console.log(myReplace("Let us go to the Store", "Store", "mall"))
 
-console.log(myReplace("Let us go to the Store", "Store", "mall"))
+
+/**
+ * Pairs given DNA elements with correct base
+ * @param {string} str String of chracters representing DNA elements
+ * @returns 2D array of provided DNA elements matched with base pairs
+ */
+function pairElement(str) {
+    let arr = []
+    const pairs = {
+        "A": "T",
+        "T": "A",
+        "C": "G",
+        "G": "C"
+    }
+    str = str.split("")
+    for (let i = 0; i < str.length; i++) {
+        let arr2 = []
+        arr2.push(str[i])
+        arr2.push(pairs[str[i]])
+        arr.push(arr2)
+    }
+    return arr;
+}
+  
+console.log(pairElement("GCG"))
