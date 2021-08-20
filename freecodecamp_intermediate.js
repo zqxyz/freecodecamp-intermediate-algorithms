@@ -114,7 +114,9 @@ function spinalCase(str) {
  */
 function translatePigLatin(str) {
     if (!/[a|e|i|o|u]/.test(str)) str += 'ay'
-    else if (!/[a|e|i|o|u]/.test(str.charAt(0))) str = str.replace(/([^a|e|i|o|u]+)([\1-^]+)/gi, '$2$1ay')
+    else if (!/[a|e|i|o|u]/.test(str.charAt(0))) {
+        str = str.replace(/([^a|e|i|o|u]+)([\1-^]+)/gi, '$2$1ay')
+    }
     else str += 'way'
     return str
 }
@@ -128,7 +130,7 @@ function translatePigLatin(str) {
  * @param {string} after Characters to replace 'before' param with
  * @returns String with replaced characters
  */
- function myReplace(str, before, after) {
+function myReplace(str, before, after) {
     if (/[A-Z]/.test(before.charAt(0))) after = after.charAt(0).toUpperCase() + after.slice(1)
     else after = after.toLowerCase()
     str = str.replace(before, after)
@@ -159,5 +161,23 @@ function pairElement(str) {
     }
     return arr;
 }
-  
-console.log(pairElement("GCG"))
+// console.log(pairElement("GCG"))
+
+
+/**
+ * Find the missing letter in the passed letter range and return it
+ * @param {string} str Alphabetic sequence of characters
+ * @returns Single missing character in a sequence, or undefined if range is continuous
+ */
+function fearNotLetter(str) {
+    let missing
+    for (let i = 0; i < str.length-1; i++) {
+        let char = str.charCodeAt(i)
+        let nextChar = str.charCodeAt(i + 1)
+        if ((nextChar - char) > 1) {
+            missing = String.fromCharCode(char+1)
+        }
+    }
+    return missing;
+}
+// console.log(fearNotLetter("abcdf"))
