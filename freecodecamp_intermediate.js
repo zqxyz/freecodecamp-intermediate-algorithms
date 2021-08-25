@@ -171,13 +171,62 @@ function pairElement(str) {
  */
 function fearNotLetter(str) {
     let missing
-    for (let i = 0; i < str.length-1; i++) {
+    for (let i = 0; i < str.length - 1; i++) {
         let char = str.charCodeAt(i)
         let nextChar = str.charCodeAt(i + 1)
         if ((nextChar - char) > 1) {
-            missing = String.fromCharCode(char+1)
+            missing = String.fromCharCode(char + 1)
         }
     }
     return missing;
 }
 // console.log(fearNotLetter("abcdf"))
+
+
+/**
+ * Joins elements from multiple arrays except duplicates
+ * @param  {...Array<any>} arr Arrays with elements to compare
+ * @returns new array with unique elements from all arrays
+ */
+function uniteUnique(...arr) {
+    let newArr = []
+    arr.forEach((set) => {
+        set.forEach((num) => {
+            (newArr.indexOf(num) == -1 && newArr.push(num))
+        })
+    })
+    return newArr
+}
+// console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]))
+
+
+/**
+ * HTML string sanitizer
+ * @param {sring} str String to HTML sanitize
+ * @returns string with HTML characters converted to character codes
+ */
+function convertHTML(str) {
+    str = str.replace(/&/g, '&amp;')
+    str = str.replace(/</g, '&lt;')
+    str = str.replace(/>/g, '&gt;')
+    str = str.replace(/"/g, '&quot;')
+    str = str.replace(/'/g, '&apos;')
+    return str
+}
+// console.log(convertHTML("<Le douche> Dolce & 'Gabbana'"))
+
+
+/**
+ * Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num
+ * @param {number} max maximum number of fib sequence to sum
+ * @param {number} n1 previous number
+ * @param {number} n2 next number
+ * @param {number} sum total of odd numbers
+ * @returns Sum of odd numbers up to and including max
+ */
+function sumFibs(max, n1 = 0, n2 = 1, sum = 0) {
+    if (n2 > max) return sum
+    if (n2 % 2) sum += n2
+    return sumFibs(max, n2, n1 + n2, sum)
+}
+console.log(sumFibs(1000))

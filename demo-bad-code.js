@@ -18,7 +18,7 @@ const whatIsInAName = (c, qu) => {
  * @param {*} query object key and value to match
  * @returns Array of collection objects matching key and value from "source"
  */
- function whatIsInAName(collection, query) {
+ function filterObjectsByQuery(collection, query) {
     let arr = []
     collection.forEach((o) => {
         let mismatch = false
