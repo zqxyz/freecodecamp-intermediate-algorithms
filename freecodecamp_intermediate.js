@@ -1,7 +1,7 @@
 /**
  * @author: code@zquint.xyz
  * @description: freecodecamp.org intermediate algorithm solutions
- * note: I am not naming these functions
+ * Note: I am not naming these functions
  */
 
 
@@ -213,11 +213,12 @@ function convertHTML(str) {
     str = str.replace(/'/g, '&apos;')
     return str
 }
-// console.log(convertHTML("<Le douche> Dolce & 'Gabbana'"))
+// console.log(convertHTML("<?php echo '<script>alert('Press alt+f4 for a prize')</script> ?>"))
 
 
 /**
- * Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num
+ * Given a positive integer num, return the sum of all odd
+ * Fibonacci numbers that are less than or equal to num
  * @param {number} max maximum number of fib sequence to sum
  * @param {number} n1 previous number
  * @param {number} n2 next number
@@ -229,4 +230,91 @@ function sumFibs(max, n1 = 0, n2 = 1, sum = 0) {
     if (n2 % 2) sum += n2
     return sumFibs(max, n2, n1 + n2, sum)
 }
-console.log(sumFibs(1000))
+// console.log(sumFibs(4))
+
+
+
+// // 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
+// function sumPrimes(max) {
+//     const checkPrime = (num) => {
+//         if ((num === 2 || num === 3) || num % 2 && !Number.isInteger(num / 3)) {
+//             return true
+//         }
+//         return false
+//     }
+
+//     if (n1 <= 1) return sum
+//     for (let i = max; i > 1; i--) {
+//         (
+//     }
+//     return num
+// }
+
+// console.log(sumPrimes(10))
+
+
+
+// console.log(checkPrime(process.argv[2]))
+
+
+
+
+
+
+
+// PROJECTS
+
+/**
+ * Checks a string for palindromicity after, excluding non-alphanumeric characters
+ * @param {string} str String to check for palindromicity
+ * @returns true if palindrome, false if not
+ */
+function palindrome(str) {
+    let alphaNumStr = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
+    let chars = alphaNumStr.split("")
+    let pal = []
+    while (chars.length > 0) {
+        pal.push(chars.pop())
+    }
+    return (pal.join('') === alphaNumStr)
+}
+// console.log(palindrome("1- A man, a plan, a canal. Panama 1-"))
+
+
+
+function convertToRoman(val) {
+    const numerals = {
+        1: "I",
+        5: "V",
+        10: "X",
+        50: "L",
+        100: "C",
+        500: "D",
+        1000: "M"
+    }
+
+    let output = []
+    let rem = 0
+    let rep = 0
+
+    const nums = Object.keys(numerals)
+
+    for (let i = 0; i < nums.length; i++) {
+        rem = val % nums[i]
+        rep = rem / nums[i - 1]
+        val = val - rem
+        if (rem > 0) {
+            if (rep === 4) {
+                output.unshift(numerals[nums[i - 1]] + numerals[nums[i]])
+            } else {
+                for (let t = 0; t < rep; t++) {
+                    output.unshift(numerals[nums[i - 1]])
+                }
+            }
+        }
+
+    }
+    return output.join('')
+}
+
+console.log(convertToRoman(9))
