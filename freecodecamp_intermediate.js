@@ -299,14 +299,19 @@ function convertToRoman(val) {
 
     const nums = Object.keys(numerals)
 
-    for (let i = 0; i < nums.length; i++) {
+    for (let i = 1; i < nums.length; i++) {
         rem = val % nums[i]
         rep = rem / nums[i - 1]
         val = val - rem
+        console.log(rep)
         if (rem > 0) {
-            if (rep === 4) {
+            if (i % 2 === 0 && rep === 4) {
                 output.unshift(numerals[nums[i - 1]] + numerals[nums[i]])
-            } else {
+            } else if (i % 2 > 0 && rep === 4) {
+                output.unshift(numerals[nums[i - 1]] + numerals[nums[i+1]])
+                console.log('bep')
+            }
+            else {
                 for (let t = 0; t < rep; t++) {
                     output.unshift(numerals[nums[i - 1]])
                 }
@@ -317,4 +322,4 @@ function convertToRoman(val) {
     return output.join('')
 }
 
-console.log(convertToRoman(9))
+console.log('\x1b[1;37;40m' + convertToRoman(9) + '\x1b[0m');
