@@ -282,44 +282,116 @@ function palindrome(str) {
 
 
 
-function convertToRoman(val) {
-    const numerals = {
-        1: "I",
-        5: "V",
-        10: "X",
-        50: "L",
-        100: "C",
-        500: "D",
-        1000: "M"
-    }
 
-    let output = []
-    let rem = 0
-    let rep = 0
+// function convertToRoman(val) {
+//     const numerals = {
+//         1: "I",
+//         5: "V",
+//         10: "X",
+//         50: "L",
+//         100: "C",
+//         500: "D",
+//         1000: "M"
+//     }
+//     const nums = Object.keys(numerals)
 
-    const nums = Object.keys(numerals)
+//     let output = []
+//     let i = 1;
+//     while (i < 7) {
 
-    for (let i = 1; i < nums.length; i++) {
-        rem = val % nums[i]
-        rep = rem / nums[i - 1]
-        val = val - rem
-        console.log(rep)
-        if (rem > 0) {
-            if (i % 2 === 0 && rep === 4) {
-                output.unshift(numerals[nums[i - 1]] + numerals[nums[i]])
-            } else if (i % 2 > 0 && rep === 4) {
-                output.unshift(numerals[nums[i - 1]] + numerals[nums[i+1]])
-                console.log('bep')
-            }
-            else {
-                for (let t = 0; t < rep; t++) {
-                    output.unshift(numerals[nums[i - 1]])
-                }
-            }
-        }
+//         let remainder = val % nums[i]
+//         console.log(i)
+//         let a = (remainder)
+//         val = val - (remainder)
 
-    }
-    return output.join('')
-}
+//         remainder = val % nums[++i]
+//         console.log(i)
+//         let b = (remainder)
+//         val = val - (remainder)
 
-console.log('\x1b[1;37;40m' + convertToRoman(9) + '\x1b[0m');
+//         if (a + b === 9) {
+//             output.unshift(numerals[nums[i-2]]+numerals[nums[i]])
+//         } else if (a + b === 4) {
+//             output.unshift(numerals[nums[i-2]]+numerals[nums[i-1]])
+//         } else {
+//             if (!b) {output.unshift(numerals[nums[i-2]]) }
+//             for (let j = 0; j < a; j++) {
+//                 output.unshift('I')
+//             }
+//         }
+//     }
+//     return output.join('')
+
+
+// }
+// console.log(convertToRoman(445))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function convertToRoman(val) {
+//     const numerals = {
+//         1: "I",
+//         5: "V",
+//         10: "X",
+//         50: "L",
+//         100: "C",
+//         500: "D",
+//         1000: "M"
+//     }
+
+//     let output = []
+//     let rem = 0
+//     let rep = 0
+
+//     const nums = Object.keys(numerals)
+
+
+
+//     for (let i = 1; i < nums.length-1; i++) {
+//         rem = val % nums[i]
+//         rep = rem / nums[i - 1]
+//         console.log("rem " + rem)
+//         console.log("rep " + rep)
+//         console.log("val " + val)
+//         val = val - rem
+
+//         if (rem > 0) {
+//             if (rem % 5 === 4) {
+//                 output.unshift(numerals[nums[i-1]] + numerals[nums[i+1]])
+//                 console.log('Noom: ' + numerals[nums[i-1]] + numerals[nums[i+1]] + 'HIT')
+//                 val -= 5
+//             } else if (rep === 4) {
+//                 output.unshift(numerals[nums[i-1]] + numerals[nums[i]])
+//                 console.log('Noom: ' + numerals[nums[i-1]] + numerals[nums[i]])
+//                 // val = val - nums[rep]
+//             } else {
+//                 for (let t = 0; t < rep; t++) {
+//                     output.unshift(numerals[nums[i - 1]])
+//                     console.log('Noom: ' + numerals[nums[i - 1]])
+//                 }
+//             }
+//         }
+//         console.log()
+
+//     }
+
+//     return output.join('')
+// }
+
+// // 999 = CMXCIX
+// // 449 = CDXLIX
+// console.log('\x1b[1;37;40m' + convertToRoman(399) + '\x1b[0m');
